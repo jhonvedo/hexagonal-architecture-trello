@@ -1,0 +1,19 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Card {
+  id        String      @default(cuid()) @id
+  createdAt DateTime    @default(now())
+  title     String
+  description   String
+  state     String      
+}
+
