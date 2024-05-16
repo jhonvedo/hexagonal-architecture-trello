@@ -12,7 +12,7 @@ export default async function Post({ post }: { post: PostProps }) {
         <h2 className='text-md'>{post.title}</h2>
         <p>{authorName}</p>
         {/* <p>{post.createdAt.toLocaleDateString()}</p> */}
-        <StateSelector post={post}/>
+        <StateSelector key={post.id} post={post}/>
     </div>
   )
 }

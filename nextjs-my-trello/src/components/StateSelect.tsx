@@ -18,8 +18,8 @@ export default function StateSelect(props: PostProps) {
     try {
       await changePostState(post.id, newValue as CardState)
       setState(newValue as CardState);       
-    } catch (error) {
-      console.log("error",error)
+    } catch (error: any) {
+      alert(error.message)
     }
   }
 

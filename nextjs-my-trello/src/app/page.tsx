@@ -1,11 +1,16 @@
 'use server'
 import { revalidatePath } from "next/cache";
 import PostCard from "../components/PostCard";
-import { STATUS_CARD_UPDATED_EVENT_KEY } from "my-trello-core/domain/cards/card.events";
+import { CARD_CREATED_EVENT_KEY, STATUS_CARD_UPDATED_EVENT_KEY } from "my-trello-core/domain/cards/card.events";
 import container from "../infraestructure/container";
-
+import Link from "next/link";
 
 container.IEventEmitter.subscribe(STATUS_CARD_UPDATED_EVENT_KEY, async () => { 
+    revalidatePath("/")
+});
+
+
+container.IEventEmitter.subscribe(CARD_CREATED_EVENT_KEY, async () => { 
     revalidatePath("/")
 });
 
@@ -29,9 +34,11 @@ export default async function Home() {
                         <h3 className="text-sm">ToDo</h3>                       
                     </div>
                     <div className="text-sm mt-2">                        
-                        {posts.filter(x=> x.state === "todo").map(post => <PostCard post={post} />)}
+                        {posts.filter(x=> x.state === "todo").map(post => <PostCard key={post.id} post={post} />)}
                     </div>
-                    <p className="mt-3 text-grey-dark">Add a card...</p>
+                    <Link href="?modal=true">
+                        <p className="mt-3 text-grey-dark">Add a card...</p>
+                    </Link>
                 </div>
                 <div className="rounded bg-grey-light bg-cyan-100 flex-no-shrink w-64 p-2 mr-3">
                     <div className="flex justify-between py-1">
@@ -40,7 +47,7 @@ export default async function Home() {
                     </div>
                     <div className="text-sm mt-2">
                       <div className="text-sm mt-2">                        
-                          {posts.filter(x=> x.state === "doing").map(post => <PostCard post={post} />)}
+                          {posts.filter(x=> x.state === "doing").map(post => <PostCard key={post.id} post={post} />)}
                       </div>                        
                     </div>
                 </div>
@@ -51,7 +58,7 @@ export default async function Home() {
                     </div>
                     <div className="text-sm mt-2">
                       <div className="text-sm mt-2">                        
-                          {posts.filter(x=> x.state === "closed").map(post => <PostCard post={post} />)}
+                          {posts.filter(x=> x.state === "closed").map(post => <PostCard key={post.id} post={post} />)}
                       </div>                       
                     </div>
                 </div>
