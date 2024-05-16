@@ -17,6 +17,7 @@ export class CreateCard {
     card.title = title;
     card.description = description;
     card.state = CARD_STATE_TODO;
+    card.createdAt = new Date();
     return this.cardRepository.create(card).then(x=> {
       this.cardEvents.cardCreated(x)
       return x;

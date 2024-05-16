@@ -11,7 +11,7 @@ export default async function Post({ post }: { post: PostProps }) {
     <div className="bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">
         <h2 className='text-md'>{post.title}</h2>
         <p>{authorName}</p>
-        {/* <p>{post.createdAt.toLocaleDateString()}</p> */}
+        <p>{post.createdAt.toLocaleDateString()}</p>
         <StateSelector key={post.id} post={post}/>
     </div>
   )

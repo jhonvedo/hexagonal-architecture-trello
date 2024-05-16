@@ -6,6 +6,7 @@ export const CARD_STATE_CLOSED:CardState = "closed";
 
 export class CardEntity {
     id: string
+    createdAt: Date
     title: string
     description: string
     state: CardState

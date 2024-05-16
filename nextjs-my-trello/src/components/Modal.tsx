@@ -3,7 +3,6 @@ import { useSearchParams, usePathname, redirect } from "next/navigation";
 import Link from "next/link";
 import { createCard } from "@/app/actions";
 
-
 function Modal() {
     const searchParams = useSearchParams();
     const modal = searchParams.get("modal");

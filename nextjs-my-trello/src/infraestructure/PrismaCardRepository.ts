@@ -42,7 +42,8 @@ export class PrismaCardRepository implements ICardRepository {
             id: card.id,
             description: card.description,
             state: card.state as CardState,
-            title: card.title
+            title: card.title,
+            createdAt: card.createdAt
         }
     }
 
